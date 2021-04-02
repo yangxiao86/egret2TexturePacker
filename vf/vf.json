@@ -1,0 +1,30 @@
+{
+  "frames" : { {% for sprite in allSprites %}
+    "{{sprite.fullName}}" : {
+      "frame":{
+        "x" : {{sprite.frameRect.x}},
+        "y" : {{sprite.frameRect.y}},
+        "w" : {{sprite.frameRect.width}},
+        "h" : {{sprite.frameRect.height}}
+      },
+      "rotated": {{sprite.rotated}},
+      "trimmed": {{sprite.trimmed}},
+      "sourceSize": { "w":{{sprite.untrimmedSize.width}}, "h":{{sprite.untrimmedSize.height}} },
+      "spriteSourceSize": { "x":{{sprite.sourceRect.x}}, "y":{{sprite.sourceRect.y}}, "w":{{sprite.sourceRect.width}}, "h":{{sprite.sourceRect.height}} }
+    }{% if not forloop.last %}, {% endif %}{% endfor %}
+  },
+  "animations": {
+    "default": [
+      {% for sprite in allSprites %}
+      "{{sprite.fullName}}"
+      {% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    ]
+  },
+  "meta": {
+    "app": "https://vipkid-edu.github.io/vf-docs/",
+    "image": "{{texture.fullName}}",
+    "size": {"w":{{texture.size.width}},"h":{{texture.size.height}}},
+    "scale": "{{variantParams.scale}}"
+  }
+}
